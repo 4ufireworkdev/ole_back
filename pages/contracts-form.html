@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>ฟอร์มสัญญาเช่า - OLE HOME Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <div class="layout">
+    <div class="sidebar-backdrop"></div>
+
+    <aside class="sidebar">
+      <div class="sidebar__logo">
+        <div class="sidebar__logo-brand">
+          <img src="../assets/img/logo-olehome.png" alt="OLE HOME" class="sidebar__logo-img" />
+          <div class="sidebar__logo-text">
+            <span class="sidebar__logo-main">OLE HOME</span>
+            <span class="sidebar__logo-sub">Life Space Admin</span>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar__nav">
+        <a href="index.html" class="sidebar__link">
+          <span class="sidebar__icon">📊</span>
+          <span class="sidebar__label">Dashboard</span>
+        </a>
+        <a href="properties-sale.html" class="sidebar__link">
+          <span class="sidebar__icon">🏡</span>
+          <span class="sidebar__label">บ้านขาย</span>
+        </a>
+        <a href="properties-rent.html" class="sidebar__link">
+          <span class="sidebar__icon">🔑</span>
+          <span class="sidebar__label">บ้านเช่า</span>
+        </a>
+        <a href="lands.html" class="sidebar__link">
+          <span class="sidebar__icon">📐</span>
+          <span class="sidebar__label">ที่ดิน</span>
+        </a>
+        <a href="zones.html" class="sidebar__link">
+          <span class="sidebar__icon">🗺️</span>
+          <span class="sidebar__label">โซน</span>
+        </a>
+        <a href="articles.html" class="sidebar__link">
+          <span class="sidebar__icon">📰</span>
+          <span class="sidebar__label">บทความ</span>
+        </a>
+        <a href="tenants.html" class="sidebar__link">
+          <span class="sidebar__icon">👥</span>
+          <span class="sidebar__label">ผู้เช่า</span>
+        </a>
+        <a href="contracts.html" class="sidebar__link sidebar__link--active">
+          <span class="sidebar__icon">📑</span>
+          <span class="sidebar__label">สัญญาเช่า</span>
+        </a>
+        <a href="customers-history.html" class="sidebar__link">
+          <span class="sidebar__icon">🕒</span>
+          <span class="sidebar__label">ลูกค้าเก่า</span>
+        </a>
+        <a href="roles.html" class="sidebar__link">
+          <span class="sidebar__icon">🛡️</span>
+          <span class="sidebar__label">บทบาท</span>
+        </a>
+        <a href="documents.html" class="sidebar__link">
+          <span class="sidebar__icon">📂</span>
+          <span class="sidebar__label">เอกสาร</span>
+        </a>
+      </nav>
+    </aside>
+
+    <div class="main">
+
+      <header class="topbar">
+        <button class="topbar__menu-btn" id="sidebarToggle">☰</button>
+        <div class="topbar__right">
+          <button class="topbar__theme-toggle btn btn--outline btn--small" id="themeToggle" type="button">
+            <span class="theme-toggle__icon" data-theme-light="☀️" data-theme-dark="🌙">🌙</span>
+          </button>
+          <div class="topbar__user">
+            <div class="topbar__user-info">
+              <span class="topbar__user-name">Admin Name</span>
+              <span class="topbar__user-role">Super Admin</span>
+            </div>
+            <div class="topbar__user-avatar">A</div>
+            <div class="topbar__user-dropdown">
+              <button class="btn btn--outline btn--small">Profile</button>
+              <button class="btn btn--danger btn--small">Logout</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="content">
+
+        <div class="form-page-header">
+          <div class="form-page-header__title-group">
+            <h1 class="form-page-header__title">ฟอร์มสัญญาเช่า</h1>
+            <p class="form-page-header__subtitle">เพิ่ม/แก้ไขสัญญาเช่าระหว่างผู้เช่าและอสังหาริมทรัพย์</p>
+          </div>
+          <a href="contracts.html" class="btn btn--outline">← กลับไปหน้าสัญญาเช่า</a>
+        </div>
+
+        <section class="card">
+          <div class="card__body">
+            <form class="form">
+              <div class="form__group">
+                <label class="form__label">เลือกอสังหาริมทรัพย์</label>
+                <select id="contractFormProperty" class="form__select">
+                  <option>OLE HOME Condo</option>
+                  <option>OLE HOME Villa</option>
+                </select>
+              </div>
+              <div class="form__group">
+                <label class="form__label">เลือกผู้เช่า</label>
+                <select id="contractFormTenant" class="form__select">
+                  <option>สมชาย ใจดี</option>
+                  <option>วิภา แสนดี</option>
+                </select>
+              </div>
+
+              <div class="form__group">
+                <label class="form__label">วันเริ่มสัญญา</label>
+                <input id="contractFormStartDate" type="date" class="form__input" />
+              </div>
+              <div class="form__group">
+                <label class="form__label">วันสิ้นสุดสัญญา</label>
+                <input id="contractFormEndDate" type="date" class="form__input" />
+              </div>
+
+              <div class="form__group">
+                <label class="form__label">ค่าเช่า/เดือน</label>
+                <input id="contractFormRent" type="number" class="form__input" />
+              </div>
+              <div class="form__group">
+                <label class="form__label">จำนวนเดือนมัดจำ</label>
+                <input id="contractFormDepositMonths" type="number" class="form__input" />
+              </div>
+              <div class="form__group">
+                <label class="form__label">ยอดเงินมัดจำ</label>
+                <input id="contractFormDepositAmount" type="number" class="form__input" />
+              </div>
+
+              <div class="form__group">
+                <label class="form__label">สถานะสัญญา</label>
+                <select id="contractFormStatus" class="form__select">
+                  <option>ใช้งานอยู่</option>
+                  <option>รออนุมัติ</option>
+                  <option>หมดอายุ</option>
+                  <option>ยกเลิก</option>
+                </select>
+              </div>
+              <div class="form__group">
+                <label class="form__label">ประเภทสัญญา</label>
+                <input id="contractFormType" type="text" class="form__input" placeholder="เช่น รายปี, รายเดือน" />
+              </div>
+
+              <div class="form__group form__group--full">
+                <label class="form__label">สาธารณูปโภค (คั่นด้วย ,)</label>
+                <input id="contractFormUtilities" type="text" class="form__input" placeholder="ค่าน้ำ, ค่าไฟ, อินเทอร์เน็ต" />
+              </div>
+
+              <div class="form__group">
+                <label class="form__label">วันครบกำหนดชำระ (วันที่ของเดือน)</label>
+                <input id="contractFormDueDay" type="number" class="form__input" min="1" max="31" />
+              </div>
+
+              <div class="form__group form__group--full">
+                <label class="form__label">หมายเหตุ / เงื่อนไขพิเศษ</label>
+                <textarea id="contractFormNotes" class="form__textarea"></textarea>
+              </div>
+
+              <div class="form__group form__group--full">
+                <label class="form__label">เอกสารแนบ / หลักฐาน</label>
+                <input id="contractFormAttachment" type="file" class="form__input" />
+              </div>
+
+              <div class="form__group form__group--full" style="margin-top:10px;">
+                <button type="submit" class="btn btn--primary">บันทึกสัญญาเช่า</button>
+                <a href="contracts.html" class="btn btn--outline">ยกเลิก</a>
+              </div>
+            </form>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/contracts-form.js"></script>
+</body>
+</html>

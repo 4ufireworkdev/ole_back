@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>เข้าสู่ระบบ - OLE HOME Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body class="auth-body">
+  <div class="auth">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <img src="assets/img/logo-olehome.png" alt="OLE HOME" />
+      </div>
+      <h1 class="auth-title">OLE HOME Admin</h1>
+      <p class="auth-subtitle">เข้าสู่ระบบเพื่อจัดการบ้าน ที่ดิน และผู้เช่า</p>
+
+      <div class="form">
+        <div class="form__group form__group--full">
+          <label class="form__label">อีเมลหรือชื่อผู้ใช้</label>
+          <input type="text" id="username" class="form__input" />
+        </div>
+        <div class="form__group form__group--full">
+          <label class="form__label">รหัสผ่าน</label>
+          <input type="password" id="password"  class="form__input" />
+        </div>
+        <div class="form__group form__group--full" style="margin-top:8px;">
+          <button class="btn btn--primary" style="width:100%;" id="login">เข้าสู่ระบบ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="constants/apiPort.js"></script>
+  <script src="constants/statusTextRespone.js"></script>
+  <script src="constants/util.js"></script>
+  <script src="assets/js/login.js"></script>
+</body>
+
+</html>

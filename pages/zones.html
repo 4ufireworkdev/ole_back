@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>จัดการโซน - OLE HOME Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <div class="layout">
+    <div class="sidebar-backdrop"></div>
+
+    <aside class="sidebar">
+      <div class="sidebar__logo">
+        <div class="sidebar__logo-brand">
+          <img src="../assets/img/logo-olehome.png" alt="OLE HOME" class="sidebar__logo-img" />
+          <div class="sidebar__logo-text">
+            <span class="sidebar__logo-main">OLE HOME</span>
+            <span class="sidebar__logo-sub">Life Space Admin</span>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar__nav">
+        <a href="index.html" class="sidebar__link">
+          <span class="sidebar__icon">📊</span>
+          <span class="sidebar__label">Dashboard</span>
+        </a>
+        <a href="properties-sale.html" class="sidebar__link">
+          <span class="sidebar__icon">🏡</span>
+          <span class="sidebar__label">บ้านขาย</span>
+        </a>
+        <a href="properties-rent.html" class="sidebar__link">
+          <span class="sidebar__icon">🔑</span>
+          <span class="sidebar__label">บ้านเช่า</span>
+        </a>
+        <a href="lands.html" class="sidebar__link">
+          <span class="sidebar__icon">📐</span>
+          <span class="sidebar__label">ที่ดิน</span>
+        </a>
+        <a href="zones.html" class="sidebar__link sidebar__link--active">
+          <span class="sidebar__icon">🗺️</span>
+          <span class="sidebar__label">โซน</span>
+        </a>
+        <a href="articles.html" class="sidebar__link">
+          <span class="sidebar__icon">📰</span>
+          <span class="sidebar__label">บทความ</span>
+        </a>
+        <a href="tenants.html" class="sidebar__link">
+          <span class="sidebar__icon">👥</span>
+          <span class="sidebar__label">ผู้เช่า</span>
+        </a>
+        <a href="contracts.html" class="sidebar__link">
+          <span class="sidebar__icon">📑</span>
+          <span class="sidebar__label">สัญญาเช่า</span>
+        </a>
+        <a href="customers-history.html" class="sidebar__link">
+          <span class="sidebar__icon">🕒</span>
+          <span class="sidebar__label">ลูกค้าเก่า</span>
+        </a>
+        <a href="roles.html" class="sidebar__link">
+          <span class="sidebar__icon">🛡️</span>
+          <span class="sidebar__label">บทบาท</span>
+        </a>
+        <a href="documents.html" class="sidebar__link">
+          <span class="sidebar__icon">📂</span>
+          <span class="sidebar__label">เอกสาร</span>
+        </a>
+      </nav>
+    </aside>
+
+    <div class="main">
+
+      <header class="topbar">
+        <button class="topbar__menu-btn" id="sidebarToggle">☰</button>
+        <div class="topbar__right">
+          <button class="topbar__theme-toggle btn btn--outline btn--small" id="themeToggle" type="button">
+            <span class="theme-toggle__icon" data-theme-light="☀️" data-theme-dark="🌙">🌙</span>
+          </button>
+          <div class="topbar__user">
+            <div class="topbar__user-info">
+              <span class="topbar__user-name">Admin Name</span>
+              <span class="topbar__user-role">Super Admin</span>
+            </div>
+            <div class="topbar__user-avatar">A</div>
+            <div class="topbar__user-dropdown">
+              <button class="btn btn--outline btn--small">Profile</button>
+              <button class="btn btn--danger btn--small">Logout</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="content">
+
+        <header class="page-header">
+          <div>
+            <h1 class="page-title">จัดการโซน</h1>
+            <p class="page-subtitle">ลิสต์โซนทั้งหมด สามารถแก้ไขและลบได้</p>
+          </div>
+          <a href="zones-form.html" class="btn btn--primary">+ เพิ่มโซน</a>
+        </header>
+
+        <section class="card card--full">
+          <div class="card__header">
+            <h3 class="card__title">รายการโซน</h3>
+          </div>
+          <div class="filters filters--single">
+            <div class="filters__search">
+              <span class="filters__icon">🔍</span>
+              <input id="zonesSearch" type="text" class="form__input filters__search-input" placeholder="ค้นหาจากชื่อโซน หรือรายละเอียด..." />
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ชื่อโซน (ไทย)</th>
+                  <th>ชื่อโซน (อังกฤษ)</th>
+                  <th>สีโซน</th>
+                  <th>รายละเอียด</th>
+                  <th>จัดการ</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>โซนเชียงใหม่เหนือ</td>
+                  <td>Chiangmai North Zone</td>
+                  <td><span class="badge" style="background:#dbeafe;">#2563EB</span></td>
+                  <td>ย่านบ้านจัดสรรและหมู่บ้านใหม่</td>
+                  <td>
+                    <a href="zones-form.html" class="btn btn--outline btn--small">แก้ไข</a>
+                    <button class="btn btn--danger btn--small">ลบ</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/zones.js"></script>
+</body>
+</html>
