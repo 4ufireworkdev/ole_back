@@ -53,10 +53,10 @@
           <span class="sidebar__icon">📑</span>
           <span class="sidebar__label">สัญญาเช่า</span>
         </a>
-        <a href="customers-history.html" class="sidebar__link">
+        <!-- <a href="customers-history.html" class="sidebar__link">
           <span class="sidebar__icon">🕒</span>
           <span class="sidebar__label">ลูกค้าเก่า</span>
-        </a>
+        </a> -->
         <a href="roles.html" class="sidebar__link">
           <span class="sidebar__icon">🛡️</span>
           <span class="sidebar__label">บทบาท</span>
@@ -78,13 +78,13 @@
           </button>
           <div class="topbar__user">
             <div class="topbar__user-info">
-              <span class="topbar__user-name">Admin Name</span>
-              <span class="topbar__user-role">Super Admin</span>
+              <span class="topbar__user-name" id="user_username">Admin Name</span>
+              <span class="topbar__user-role" id="user_role">Super Admin</span>
             </div>
-            <div class="topbar__user-avatar">A</div>
+            <div class="topbar__user-avatar" id="user_profile">A</div>
             <div class="topbar__user-dropdown">
-              <button class="btn btn--outline btn--small">Profile</button>
-              <button class="btn btn--danger btn--small">Logout</button>
+              
+              <button class="btn btn--danger btn--small" onclick="logout()">Logout</button>
             </div>
           </div>
         </div>
@@ -110,16 +110,15 @@
               <input id="landsSearch" type="text" class="form__input filters__search-input" placeholder="ค้นหาจากชื่อที่ดิน, ที่อยู่, ผู้ดูแล/บทบาท..." />
             </div>
             <select id="landsStatus" class="form__select filters__select">
-              <option>สถานะทั้งหมด</option>
-              <option>พร้อมขาย</option>
-              <option>จองแล้ว</option>
-              <option>ขายแล้ว</option>
+              <option value="">สถานะทั้งหมด</option>
+              <option value="available">พร้อมขาย</option>
+              <option value="reserved">จองแล้ว</option>
+              <option value="sold">ขายแล้ว</option>
             </select>
             <select id="landsZone" class="form__select filters__select">
-              <option>ทุกโซน</option>
-              <option>Zone A</option>
-              <option>Zone B</option>
+
             </select>
+            <a href="#" class="btn btn--success btn--small" onclick="GetDataAllLands()">ค้นหา</a>
           </div>
           <div class="table-wrapper">
             <table class="table">
@@ -134,23 +133,8 @@
                   <th>จัดการ</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="table-thumb">
-                      <img src="https://placehold.co/160x100" alt="ที่ดิน" />
-                    </div>
-                  </td>
-                  <td>OLE Land Plot A</td>
-                  <td>Zone B</td>
-                  <td>5,800,000</td>
-                  <td>1 งาน 50 ตรว.</td>
-                  <td><span class="badge badge--success">พร้อมขาย</span></td>
-                  <td>
-                    <a href="lands-form.html" class="btn btn--outline btn--small">แก้ไข</a>
-                    <button class="btn btn--danger btn--small">ลบ</button>
-                  </td>
-                </tr>
+              <tbody id="table_list">
+               
               </tbody>
             </table>
           </div>
@@ -159,6 +143,12 @@
       </main>
     </div>
   </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../constants/apiPort.js"></script>
+  <script src="../constants/statusTextRespone.js"></script>
+  <script src="../constants/util.js"></script>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/lands.js"></script>
 </body>

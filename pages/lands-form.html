@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8" />
   <title>ฟอร์มที่ดิน - OLE HOME Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
+
 <body>
   <div class="layout">
     <div class="sidebar-backdrop"></div>
@@ -53,10 +55,10 @@
           <span class="sidebar__icon">📑</span>
           <span class="sidebar__label">สัญญาเช่า</span>
         </a>
-        <a href="customers-history.html" class="sidebar__link">
+        <!-- <a href="customers-history.html" class="sidebar__link">
           <span class="sidebar__icon">🕒</span>
           <span class="sidebar__label">ลูกค้าเก่า</span>
-        </a>
+        </a> -->
         <a href="roles.html" class="sidebar__link">
           <span class="sidebar__icon">🛡️</span>
           <span class="sidebar__label">บทบาท</span>
@@ -78,13 +80,13 @@
           </button>
           <div class="topbar__user">
             <div class="topbar__user-info">
-              <span class="topbar__user-name">Admin Name</span>
-              <span class="topbar__user-role">Super Admin</span>
+              <span class="topbar__user-name" id="user_username">Admin Name</span>
+              <span class="topbar__user-role" id="user_role">Super Admin</span>
             </div>
-            <div class="topbar__user-avatar">A</div>
+            <div class="topbar__user-avatar" id="user_profile">A</div>
             <div class="topbar__user-dropdown">
-              <button class="btn btn--outline btn--small">Profile</button>
-              <button class="btn btn--danger btn--small">Logout</button>
+
+              <button class="btn btn--danger btn--small" onclick="logout()">Logout</button>
             </div>
           </div>
         </div>
@@ -102,7 +104,7 @@
 
         <section class="card">
           <div class="card__body">
-            <form class="form">
+            <div class="form">
               <div class="form__group">
                 <label class="form__label">เลือกโซน</label>
                 <select id="landFormZone" class="form__select">
@@ -150,7 +152,9 @@
                 <label class="form__label">รูปภาพ (หลายรูป)</label>
                 <input id="landFormImages" type="file" class="form__input" multiple />
               </div>
+              <div id="show_picture">
 
+              </div>
               <div class="form__group">
                 <label class="form__label">ราคาขาย (THB)</label>
                 <input id="landFormPriceThb" type="number" class="form__input" />
@@ -169,14 +173,7 @@
                 <input id="landFormSqWa" type="number" class="form__input" />
               </div>
 
-              <div class="form__group">
-                <label class="form__label">ห้องน้ำ (ถ้ามี)</label>
-                <input id="landFormBathrooms" type="number" class="form__input" />
-              </div>
-              <div class="form__group">
-                <label class="form__label">ที่จอดรถ (คัน)</label>
-                <input id="landFormParking" type="number" class="form__input" />
-              </div>
+
 
               <div class="form__group">
                 <label class="form__label">เบอร์โทรศัพท์</label>
@@ -190,9 +187,9 @@
               <div class="form__group">
                 <label class="form__label">สถานะ</label>
                 <select id="landFormStatus" class="form__select">
-                  <option>พร้อมขาย</option>
-                  <option>จองแล้ว</option>
-                  <option>ขายแล้ว</option>
+                  <option value="available">พร้อมขาย</option>
+                  <option value="reserved">จองแล้ว</option>
+                  <option value="sold">ขายแล้ว</option>
                 </select>
               </div>
 
@@ -207,7 +204,8 @@
 
               <div class="form__group form__group--full">
                 <label class="form__label">คุณสมบัติพิเศษ (คั่นด้วย ,)</label>
-                <input id="landFormSpecialFeatures" type="text" class="form__input" placeholder="วิวภูเขา, ติดถนนใหญ่, ..." />
+                <input id="landFormSpecialFeatures" type="text" class="form__input"
+                  placeholder="วิวภูเขา, ติดถนนใหญ่, ..." />
               </div>
 
               <div class="form__group form__group--full">
@@ -215,40 +213,57 @@
                 <input id="landFormDeedDoc" type="file" class="form__input" />
               </div>
 
-              <div class="form__group form__group--full">
+              <div class="form__group form__group--full" id="landDocument">
+                <!-- <a href="">โหลดเอกสาร</a> -->
+              </div>
+
+              <!-- <div class="form__group form__group--full">
                 <label class="form__label">สิ่งอำนวยความสะดวก</label>
                 <div class="form__checkbox-list">
-                  <label class="form__checkbox-item"><input id="landAmenKitchen" type="checkbox" /> ห้องครัวพร้อมเคาน์เตอร์</label>
-                  <label class="form__checkbox-item"><input id="landAmenBathAllFloors" type="checkbox" /> ห้องน้ำครบทุกชั้น</label>
+                  <label class="form__checkbox-item"><input id="landAmenKitchen" type="checkbox" />
+                    ห้องครัวพร้อมเคาน์เตอร์</label>
+                  <label class="form__checkbox-item"><input id="landAmenBathAllFloors" type="checkbox" />
+                    ห้องน้ำครบทุกชั้น</label>
                   <label class="form__checkbox-item"><input id="landAmenAC" type="checkbox" /> ระบบปรับอากาศ</label>
-                  <label class="form__checkbox-item"><input id="landAmenSecurity" type="checkbox" /> ระบบรักษาความปลอดภัย</label>
+                  <label class="form__checkbox-item"><input id="landAmenSecurity" type="checkbox" />
+                    ระบบรักษาความปลอดภัย</label>
                   <label class="form__checkbox-item"><input id="landAmenGarden" type="checkbox" /> สวนหน้าบ้าน</label>
-                  <label class="form__checkbox-item"><input id="landAmenCoveredParking" type="checkbox" /> ที่จอดรถในร่ม</label>
+                  <label class="form__checkbox-item"><input id="landAmenCoveredParking" type="checkbox" />
+                    ที่จอดรถในร่ม</label>
                   <label class="form__checkbox-item"><input id="landAmenHotWater" type="checkbox" /> ระบบน้ำร้อน</label>
-                  <label class="form__checkbox-item"><input id="landAmenWifi" type="checkbox" /> ระบบ Internet / Wifi</label>
+                  <label class="form__checkbox-item"><input id="landAmenWifi" type="checkbox" /> ระบบ Internet /
+                    Wifi</label>
                   <label class="form__checkbox-item"><input id="landAmenCCTV" type="checkbox" /> ระบบ CCTV</label>
                   <label class="form__checkbox-item"><input id="landAmenWasher" type="checkbox" /> เครื่องซักผ้า</label>
                   <label class="form__checkbox-item"><input id="landAmenFridge" type="checkbox" /> ตู้เย็น</label>
-                  <label class="form__checkbox-item"><input id="landAmenFurnished" type="checkbox" /> เฟอร์นิเจอร์ครบชุด</label>
+                  <label class="form__checkbox-item"><input id="landAmenFurnished" type="checkbox" />
+                    เฟอร์นิเจอร์ครบชุด</label>
                 </div>
-              </div>
-              <div class="form__group form__group--full">
+              </div> -->
+              <!-- <div class="form__group form__group--full">
                 <label class="form__label">สิ่งอำนวยความสะดวกอื่น ๆ</label>
                 <input id="landAmenOther" type="text" class="form__input" />
-              </div>
+              </div> -->
 
               <div class="form__group form__group--full" style="margin-top:10px;">
-                <button type="submit" class="btn btn--primary">บันทึกข้อมูล</button>
+                <button  class="btn btn--primary" onclick="Addlandal()">บันทึกข้อมูล</button>
                 <a href="lands.html" class="btn btn--outline">ยกเลิก</a>
               </div>
-            </form>
+            </div>
           </div>
         </section>
 
       </main>
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../constants/apiPort.js"></script>
+  <script src="../constants/statusTextRespone.js"></script>
+  <script src="../constants/util.js"></script>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/lands-form.js"></script>
 </body>
+
 </html>

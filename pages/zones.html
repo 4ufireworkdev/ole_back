@@ -53,10 +53,10 @@
           <span class="sidebar__icon">📑</span>
           <span class="sidebar__label">สัญญาเช่า</span>
         </a>
-        <a href="customers-history.html" class="sidebar__link">
+        <!-- <a href="customers-history.html" class="sidebar__link">
           <span class="sidebar__icon">🕒</span>
           <span class="sidebar__label">ลูกค้าเก่า</span>
-        </a>
+        </a> -->
         <a href="roles.html" class="sidebar__link">
           <span class="sidebar__icon">🛡️</span>
           <span class="sidebar__label">บทบาท</span>
@@ -78,13 +78,13 @@
           </button>
           <div class="topbar__user">
             <div class="topbar__user-info">
-              <span class="topbar__user-name">Admin Name</span>
-              <span class="topbar__user-role">Super Admin</span>
+              <span class="topbar__user-name" id="user_username">Admin Name</span>
+              <span class="topbar__user-role" id="user_role">Super Admin</span>
             </div>
-            <div class="topbar__user-avatar">A</div>
+            <div class="topbar__user-avatar" id="user_profile">A</div>
             <div class="topbar__user-dropdown">
-              <button class="btn btn--outline btn--small">Profile</button>
-              <button class="btn btn--danger btn--small">Logout</button>
+              
+              <button class="btn btn--danger btn--small" onclick="logout()">Logout</button>
             </div>
           </div>
         </div>
@@ -109,6 +109,7 @@
               <span class="filters__icon">🔍</span>
               <input id="zonesSearch" type="text" class="form__input filters__search-input" placeholder="ค้นหาจากชื่อโซน หรือรายละเอียด..." />
             </div>
+            <a href="#" class="btn btn--success btn--small" onclick="GetDataAllZone()">ค้นหา</a>
           </div>
           <div class="table-wrapper">
             <table class="table">
@@ -121,17 +122,8 @@
                   <th>จัดการ</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>โซนเชียงใหม่เหนือ</td>
-                  <td>Chiangmai North Zone</td>
-                  <td><span class="badge" style="background:#dbeafe;">#2563EB</span></td>
-                  <td>ย่านบ้านจัดสรรและหมู่บ้านใหม่</td>
-                  <td>
-                    <a href="zones-form.html" class="btn btn--outline btn--small">แก้ไข</a>
-                    <button class="btn btn--danger btn--small">ลบ</button>
-                  </td>
-                </tr>
+              <tbody id="table_list">
+                
               </tbody>
             </table>
           </div>
@@ -140,6 +132,12 @@
       </main>
     </div>
   </div>
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../constants/apiPort.js"></script>
+  <script src="../constants/statusTextRespone.js"></script>
+  <script src="../constants/util.js"></script>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/zones.js"></script>
 </body>

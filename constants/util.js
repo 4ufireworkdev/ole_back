@@ -82,7 +82,7 @@ function callXMLHttpRequest(url, data) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', url, false);
     xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.setRequestHeader('x-api-key', 'Bearer ' + localStorage.getItem('token'));
+    xhr.setRequestHeader('x-api-key', 'Bearer ' + sessionStorage.getItem('token'));
 
     xhr.send(JSON.stringify(data));
     try {
@@ -254,10 +254,10 @@ const removeOverflowHiddenScrollbar = function () {
 }
 
 const checkAndUpdateInGame = function () {
-    let getToken = localStorage.getItem('token');
+    let getToken = sessionStorage.getItem('token');
     if (getToken) {
-        let uid = parseJwt(localStorage.getItem('token'))._id;
-        let ou_id = parseJwt(localStorage.getItem('token')).ou_id;
+        let uid = parseJwt(sessionStorage.getItem('token'))._id;
+        let ou_id = parseJwt(sessionStorage.getItem('token')).ou_id;
         callXMLHttpRequest(`${apiPort.apiGateWay}/playGame/updateStatusInGame`, { uid: uid, ou_id: ou_id });
     }
 }
@@ -472,7 +472,7 @@ function callXMLHttpRequestMethod(method,url, data) {
     const xhr = new XMLHttpRequest();
     xhr.open(method, url, false);
     xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.setRequestHeader('x-api-key', 'Bearer ' + localStorage.getItem('token'));
+    xhr.setRequestHeader('x-api-key', 'Bearer ' + sessionStorage.getItem('token'));
 
     xhr.send(JSON.stringify(data));
     try {
@@ -491,7 +491,7 @@ function callXMLHttpRequestUploadFile(method,url, data) {
     const xhr = new XMLHttpRequest();
     xhr.open(method, url, false);
     // xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.setRequestHeader('x-api-key', 'Bearer ' + localStorage.getItem('token'));
+    xhr.setRequestHeader('x-api-key', 'Bearer ' + sessionStorage.getItem('token'));
 
     xhr.send(datas);
     try {

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8" />
   <title>บทความ - OLE HOME Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
+
 <body>
   <div class="layout">
     <div class="sidebar-backdrop"></div>
@@ -53,10 +55,10 @@
           <span class="sidebar__icon">📑</span>
           <span class="sidebar__label">สัญญาเช่า</span>
         </a>
-        <a href="customers-history.html" class="sidebar__link">
+        <!-- <a href="customers-history.html" class="sidebar__link">
           <span class="sidebar__icon">🕒</span>
           <span class="sidebar__label">ลูกค้าเก่า</span>
-        </a>
+        </a> -->
         <a href="roles.html" class="sidebar__link">
           <span class="sidebar__icon">🛡️</span>
           <span class="sidebar__label">บทบาท</span>
@@ -78,13 +80,13 @@
           </button>
           <div class="topbar__user">
             <div class="topbar__user-info">
-              <span class="topbar__user-name">Admin Name</span>
-              <span class="topbar__user-role">Super Admin</span>
+              <span class="topbar__user-name" id="user_username">Admin Name</span>
+              <span class="topbar__user-role" id="user_role">Super Admin</span>
             </div>
-            <div class="topbar__user-avatar">A</div>
+            <div class="topbar__user-avatar" id="user_profile">A</div>
             <div class="topbar__user-dropdown">
-              <button class="btn btn--outline btn--small">Profile</button>
-              <button class="btn btn--danger btn--small">Logout</button>
+
+              <button class="btn btn--danger btn--small" onclick="logout()">Logout</button>
             </div>
           </div>
         </div>
@@ -107,22 +109,24 @@
           <div class="filters filters--single">
             <div class="filters__search">
               <span class="filters__icon">🔍</span>
-              <input id="articlesSearch" type="text" class="form__input filters__search-input" placeholder="ค้นหาจากหัวข้อ, เนื้อหา, ผู้เขียน, แท็ก..." />
+              <input id="articlesSearch" type="text" class="form__input filters__search-input"
+                placeholder="ค้นหาจากหัวข้อ, เนื้อหา, ผู้เขียน, แท็ก..." />
             </div>
             <select id="articlesCategory" class="form__select filters__select">
-              <option>ทุกหมวดหมู่</option>
-              <option>ข่าวสาร</option>
-              <option>เทคนิค</option>
-              <option>ข่าวตลาด</option>
-              <option>กฏหมาย</option>
-              <option>การลงทุน</option>
+              <option value="">ทุกหมวดหมู่</option>
+              <option value="news">ข่าวสาร</option>
+              <option value="technique">เทคนิค</option>
+              <option value="market">ข่าวตลาด</option>
+              <option value="law">กฏหมาย</option>
+              <option value="investment">การลงทุน</option>
             </select>
             <select id="articlesStatus" class="form__select filters__select">
-              <option>สถานะทั้งหมด</option>
-              <option>ร่าง</option>
-              <option>เผยแพร่แล้ว</option>
-              <option>เก็บถาวร</option>
+              <option value="">สถานะทั้งหมด</option>
+              <option value="draft">ร่าง</option>
+              <option value="published">เผยแพร่แล้ว</option>
+              <option value="archived">เก็บถาวร</option>
             </select>
+            <a href="#" class="btn btn--success btn--small" onclick="GetDataAllArticles()">ค้นหา</a>
           </div>
           <div class="table-wrapper">
             <table class="table">
@@ -135,17 +139,8 @@
                   <th>จัดการ</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>เทคนิคเลือกบ้านหลังแรกอย่างมั่นใจ</td>
-                  <td>เทคนิค</td>
-                  <td><span class="badge badge--success">เผยแพร่แล้ว</span></td>
-                  <td>บ้านใหม่, มือใหม่</td>
-                  <td>
-                    <a href="articles-form.html" class="btn btn--outline btn--small">แก้ไข</a>
-                    <button class="btn btn--danger btn--small">ลบ</button>
-                  </td>
-                </tr>
+              <tbody id="table_list">
+
               </tbody>
             </table>
           </div>
@@ -154,7 +149,14 @@
       </main>
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../constants/apiPort.js"></script>
+  <script src="../constants/statusTextRespone.js"></script>
+  <script src="../constants/util.js"></script>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/articles.js"></script>
 </body>
+
 </html>

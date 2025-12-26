@@ -1,3 +1,14 @@
+let member = sessionStorage.getItem('token');
+$(document).ready(function () {
+    if (!member) {
+        window.location.href = '../login.html';
+    }else{
+      document.getElementById('user_username').innerHTML = sessionStorage.getItem("name");
+      document.getElementById('user_role').innerHTML = sessionStorage.getItem("role");
+      document.getElementById('user_profile').innerHTML = (sessionStorage.getItem("name")).substring(0,1);
+    }
+});
+
 
 const sidebar = document.querySelector(".sidebar");
 const sidebarToggle = document.getElementById("sidebarToggle");
@@ -91,5 +102,29 @@ if (themeToggle) {
     const nextMode = document.body.classList.contains("theme-dark") ? "light" : "dark";
     applyTheme(nextMode);
     localStorage.setItem("olehome-admin-theme", nextMode);
+  });
+}
+
+
+async function logout(){
+  Swal.fire({
+    title: "แจ้งเตือน",
+    text: "คุณต้องการที่จะออกจากระบบหรือไม่ ?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#28a745",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Logout",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire("แจ้งเตือน", "ออกจากระบบเรียบร้อยแล้ว", "success").then(
+        (result) => {
+          if (result.value) {
+            sessionStorage.removeItem("token");
+            window.location.href = "../login.html";
+          }
+        }
+      );
+    }
   });
 }

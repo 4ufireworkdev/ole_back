@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8" />
   <title>จัดการบ้านเช่า - OLE HOME Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
+
 <body>
   <div class="layout">
     <div class="sidebar-backdrop"></div>
@@ -53,10 +55,10 @@
           <span class="sidebar__icon">📑</span>
           <span class="sidebar__label">สัญญาเช่า</span>
         </a>
-        <a href="customers-history.html" class="sidebar__link">
+        <!-- <a href="customers-history.html" class="sidebar__link">
           <span class="sidebar__icon">🕒</span>
           <span class="sidebar__label">ลูกค้าเก่า</span>
-        </a>
+        </a> -->
         <a href="roles.html" class="sidebar__link">
           <span class="sidebar__icon">🛡️</span>
           <span class="sidebar__label">บทบาท</span>
@@ -78,13 +80,13 @@
           </button>
           <div class="topbar__user">
             <div class="topbar__user-info">
-              <span class="topbar__user-name">Admin Name</span>
-              <span class="topbar__user-role">Super Admin</span>
+              <span class="topbar__user-name" id="user_username">Admin Name</span>
+              <span class="topbar__user-role" id="user_role">Super Admin</span>
             </div>
-            <div class="topbar__user-avatar">A</div>
+            <div class="topbar__user-avatar" id="user_profile">A</div>
             <div class="topbar__user-dropdown">
-              <button class="btn btn--outline btn--small">Profile</button>
-              <button class="btn btn--danger btn--small">Logout</button>
+
+              <button class="btn btn--danger btn--small" onclick="logout()">Logout</button>
             </div>
           </div>
         </div>
@@ -107,25 +109,24 @@
           <div class="filters filters--single">
             <div class="filters__search">
               <span class="filters__icon">🔍</span>
-              <input id="rentSearch" type="text" class="form__input filters__search-input" placeholder="ค้นหาจากชื่อโครงการ, ที่อยู่, ผู้ดูแล/บทบาท..." />
+              <input id="rentSearch" type="text" class="form__input filters__search-input"
+                placeholder="ค้นหาจากชื่อโครงการ, ที่อยู่, ผู้ดูแล/บทบาท..." />
             </div>
             <select id="rentStatus" class="form__select filters__select">
-              <option>สถานะทั้งหมด</option>
-              <option>ว่าง</option>
-              <option>ให้เช่าแล้ว</option>
-              <option>จองแล้ว</option>
+              <option value="">สถานะทั้งหมด</option>
+              <option value="available">ว่าง</option>
+              <option value="rented">ให้เช่าแล้ว</option>
+              <option value="reserved">จองแล้ว</option>
             </select>
             <select id="rentZone" class="form__select filters__select">
-              <option>ทุกโซน</option>
-              <option>Zone A</option>
-              <option>Zone B</option>
             </select>
             <select id="rentType" class="form__select filters__select">
-              <option>ทุกประเภทสัญญา</option>
-              <option>รายวัน</option>
-              <option>รายเดือน</option>
-              <option>รายปี</option>
+              <option value="">ทุกประเภทสัญญา</option>
+              <option value="1">รายวัน</option>
+              <option value="2">รายเดือน</option>
+              <option value="3">รายปี</option>
             </select>
+            <a href="#" class="btn btn--success btn--small" onclick="GetDataAllRentals()">ค้นหา</a>
           </div>
           <div class="table-wrapper">
             <table class="table">
@@ -140,7 +141,7 @@
                   <th>จัดการ</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="table_list">
                 <tr>
                   <td>
                     <div class="table-thumb">
@@ -165,7 +166,14 @@
       </main>
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../constants/apiPort.js"></script>
+  <script src="../constants/statusTextRespone.js"></script>
+  <script src="../constants/util.js"></script>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/properties-rent.js"></script>
 </body>
+
 </html>
